@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: test | My Octopress Blog]]></title>
+  <link href="http://e125747.github.io/blog/categories/test/atom.xml" rel="self"/>
+  <link href="http://e125747.github.io/"/>
+  <updated>2014-02-25T18:11:49+09:00</updated>
+  <id>http://e125747.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[記事１]]></title>
+    <link href="http://e125747.github.io/blog/2014/02/25/post-test/"/>
+    <updated>2014-02-25T17:57:08+09:00</updated>
+    <id>http://e125747.github.io/blog/2014/02/25/post-test</id>
+    <content type="html"><![CDATA[<h1>あいうえお</h1>
+
+<p>あいうえお<code>hoge</code>あいうえお</p>
+
+<p>``` c</p>
+
+<h1>include &lt;stdio.h></h1>
+
+<p>int main(){</p>
+
+<pre><code>printf("helloworld\n");
+return 0;
+</code></pre>
+
+<p>}</p>
+
+<p>```</p>
+
+<ul>
+<li>hogehoge</li>
+<li>hogehoge</li>
+<li><p>hogehoge</p></li>
+<li><p>hugahuga</p></li>
+<li>fugafuga</li>
+</ul>
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left">left</th>
+<th align="center">center</th>
+<th align="right">right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="left">左</td>
+<td align="center">中</td>
+<td align="right">右|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">左</td>
+<td align="center">中</td>
+<td align="right">右|</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">左</td>
+<td align="center">中</td>
+<td align="right">右|</td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
+  
+</feed>
