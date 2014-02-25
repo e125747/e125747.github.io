@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | My Octopress Blog]]></title>
   <link href="http://e125747.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://e125747.github.io/"/>
-  <updated>2014-02-25T18:11:49+09:00</updated>
+  <updated>2014-02-25T19:01:54+09:00</updated>
   <id>http://e125747.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,64 +18,43 @@
     <link href="http://e125747.github.io/blog/2014/02/25/post-test/"/>
     <updated>2014-02-25T17:57:08+09:00</updated>
     <id>http://e125747.github.io/blog/2014/02/25/post-test</id>
-    <content type="html"><![CDATA[<h1>あいうえお</h1>
+    <content type="html"><![CDATA[<h1>octopressの使い方</h1>
 
-<p>あいうえお<code>hoge</code>あいうえお</p>
+<p>・記事の作成方法</p>
 
-<p>``` c</p>
+<p>```
+$ cd e125747.github.io</p>
 
-<h1>include &lt;stdio.h></h1>
+<p>$ bundle exec rake &ldquo;new_post[post name]&rdquo;
+```</p>
 
-<p>int main(){</p>
+<p>これで<code>/souce/_posts/YYY-MM-DD-title.markdown</code>というファイルが出来る。</p>
 
-<pre><code>printf("helloworld\n");
-return 0;
-</code></pre>
+<p>記事の編集は<code>/Users/e125747/e125747.github.io/source/_posts</code>内の<code>YYY-MM-DD-title.markdown</code>でできる。</p>
 
-<p>}</p>
+<p>・ローカルで見る方法
+<code>
+$ bundle exec rake preview
+</code></p>
 
-<p>```</p>
+<p>ブラウザで<code>http://localhost:4000/</code>でプレビューを見ることができる。</p>
 
-<ul>
-<li>hogehoge</li>
-<li>hogehoge</li>
-<li><p>hogehoge</p></li>
-<li><p>hugahuga</p></li>
-<li>fugafuga</li>
-</ul>
+<p>・githubのpageへdeployする方法
+<code>
+$ bundle exec rake gen_deploy
+</code></p>
 
+<p>・bitbucketへのソースコードのプッシュ
+<code>
+$ cd e125747.github.io
+$ git stage .
+$ git commit -m "commit massage"
+$ git push -u bitbucket source
+</code></p>
 
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="left">left</th>
-<th align="center">center</th>
-<th align="right">right</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="left">左</td>
-<td align="center">中</td>
-<td align="right">右|</td>
-</tr>
-<tr>
-<td></td>
-<td align="left">左</td>
-<td align="center">中</td>
-<td align="right">右|</td>
-</tr>
-<tr>
-<td></td>
-<td align="left">左</td>
-<td align="center">中</td>
-<td align="right">右|</td>
-</tr>
-</tbody>
-</table>
+<h2>参考記事</h2>
 
+<p><a href="http://morizyun.github.io/blog/octopress-gitpage-minimum-install-guide/">OctopressでGitHub無料ブログ構築。sourceをBitbucket管理。簡単ガイド！</a></p>
 ]]></content>
   </entry>
   
