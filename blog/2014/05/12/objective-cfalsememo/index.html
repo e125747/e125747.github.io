@@ -9,7 +9,13 @@
 
 <meta name="author" content="Your Name"> 
 
-<meta name="description" content=" May 12th, 2014 "> <meta name="keywords" content="">
+<meta name="description" content="Objective-Cのメモ 時間の測り方 タイマーの生成にはNSTimerクラスを使う。 1
+2
+3
+4
+5
+6
+timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(timer) &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -96,7 +102,154 @@ $(document).ready(
 
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">objective-Cのメモ</h2>
-	<div class="entry-content">
+	<div class="entry-content"><h1>Objective-Cのメモ</h1>
+
+<h2>時間の測り方</h2>
+
+<p>タイマーの生成にはNSTimerクラスを使う。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">timer</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSTimer</span> <span class="nl">scheduledTimerWithTimeInterval:</span><span class="mf">0.01</span>
+</span><span class='line'>                                         <span class="nl">target:</span><span class="n">self</span>
+</span><span class='line'>                                       <span class="nl">selector:</span><span class="k">@selector</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+</span><span class='line'>                                       <span class="nl">userInfo:</span><span class="nb">nil</span>
+</span><span class='line'>                                        <span class="nl">repeats:</span><span class="n">YES</span>
+</span><span class='line'>         <span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ヘッダーにフィールド変数としてNSTimer型の*timerを用意している。
+scheduledTimerWithTimeIntervalにはタイマー発生処理の間隔を書く。ここでは0.01秒ごとに呼び出している。
+targetは発生時に呼び出すメソッドがあるターゲット。
+selectorにメソッド名を書き、そのメソッドに呼び出された時の処理を書く。
+0.01秒ごとに何度も呼び出すのでrepeatsはYES。</p>
+
+<p>呼び出されるtimerメソッド</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">timer</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">timerCount</span> <span class="o">=</span> <span class="n">timerCount</span> <span class="o">+</span> <span class="mf">0.01f</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">timerLabel</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithFormat:</span><span class="s">@&quot;%05.2f&quot;</span><span class="p">,</span><span class="n">second</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">self</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">timerLabel</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>0.01秒ごとに呼び出されるのでフィールド変数として用意したtimerCountに+0.01を足している。
+フィールド変数timerLabelに代入する際、小数点以下を2桁で記述、全てを(小数点含めて)5桁まで記述し、足りない部分を0で補っている。
+これをテキストに代入することで、0.01秒ごとにラベルを0.01秒更新することができている。
+timerを止める際には
+[timer invalidate]
+と記述する。</p>
+
+<h2>乱数の精製方法</h2>
+
+<h5>Objective-Cにはランダムな数字(乱数)を生成する方法がいくつかある。その中でに今回利用したものを紹介する。</h5>
+
+<hr />
+
+<p> 1 srand((unsigned)time(NULL)) &ndash;> random()</p>
+
+<ul>
+<li><p>まずシード値(srandの引数)をランダムにするために現在の時刻をシード値に設定して、random()関数を使って、乱数を生成する。</p></li>
+<li><p><code>srandをしないと</code>random()関数で生成される乱数は毎回同じ乱数が出現する。</p></li>
+</ul>
+
+
+<hr />
+
+<p> 2 arc4random()</p>
+
+<ul>
+<li>arc4random(数値)は1で説明したsrand()+random()の組み合わせである。わざわざsrand()で一度初期化しなくても、すぐに毎回ランダムな乱数を生成することができる。</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">arc4random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">10</span> <span class="c1">// -&gt; 0~9の乱数を生成</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>しかし、arc4random()で生成される乱数にはすこし偏りがある。詳しい説明は省くが、<code>arc4random()を使用した場合には少し注意</code>が必要</li>
+</ul>
+
+
+<p> <a href="http://obc-fight.blogspot.jp/2013/08/arc4randomarc4randomuniform.html">Objective-Cと戦うブログ</a></p>
+
+<hr />
+
+<p> 3 arc4random_uniform()</p>
+
+<ul>
+<li>2のarc4random()をさらに使いやすくしたのが<code>arc4random_uniform(数値)</code>である。
+arc4random_uniform(数値)で生成される乱数は完全にランダムである。</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">arc4random_uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1">// -&gt; 0から9の乱数が生成</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>なので、これから乱数を生成する時は<code>arc4random_uniform(数値)</code>を使うと良いだろう。</h5>
+
+<h1>データの保存</h1>
+
+<h2>ランキングの実装(データの保存)をしたい</h2>
+
+<ul>
+<li>NSUserDafaultクラスを利用する。</li>
+</ul>
+
+
+<h4>書き方</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'> <span class="c1">// インスタンス化</span>
+</span><span class='line'> <span class="n">NSUserDafaults</span> <span class="o">*</span><span class="n">userDafault</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSUserDafaults</span> <span class="n">standardUserDefaults</span><span class="p">];</span>
+</span><span class='line'><span class="c1">// 初期値の設定</span>
+</span><span class='line'> <span class="k">if</span><span class="p">([</span><span class="n">userDafault</span> <span class="nl">stringForKey:</span><span class="s">@&quot;YOUR_KEY&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'> <span class="p">[</span><span class="n">userDafault</span> <span class="nl">setObject:</span><span class="s">@&quot;YOUR_OBJECT&quot;</span> <span class="nl">forKey:</span><span class="s">@&quot;YOUR_KEY&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="c1">// オブジェクトの保存の反映</span>
+</span><span class='line'> <span class="p">[</span><span class="n">userDafault</span> <span class="n">synchronize</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>[NSUserDafaults standardUserdafaults]</li>
+</ul>
+
+
+<p>NSUserDafaultsクラスのオブジェクトをインスタンス化する時はいつもこのクラスメソッドを使う。</p>
+
+<p>NSUserDafaultsクラスの<code>オブジェクトがない場合</code>は<code>新しくオブジェクト</code>を作り、すでに<code>オブジェクトが存在する場合</code>は<code>そのオブジェクト</code>が入る。</p>
+
+<h4>データの取得</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'> <span class="c1">// YOUR_KEYに対する内容をNSString型で取得</span>
+</span><span class='line'> <span class="n">NSString</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">userDafault</span> <span class="nl">stringForKey:</span><span class="s">@&quot;YOUR_KEY&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
