@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://e125747.github.io/atom.xml" rel="self"/>
   <link href="http://e125747.github.io/"/>
-  <updated>2014-02-25T19:01:54+09:00</updated>
+  <updated>2014-05-12T22:12:47+09:00</updated>
   <id>http://e125747.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[objective-Cのメモ]]></title>
+    <link href="http://e125747.github.io/blog/2014/05/12/objective-cfalsememo/"/>
+    <updated>2014-05-12T22:04:57+09:00</updated>
+    <id>http://e125747.github.io/blog/2014/05/12/objective-cfalsememo</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[記事１]]></title>
